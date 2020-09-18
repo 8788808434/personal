@@ -3,6 +3,7 @@ package com.gasagency.gas.entity;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Table(name="txn_user")
-public class User 
+public class Users 
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -45,12 +46,12 @@ public class User
 	private String mobileNumber;
 	
 	@Lob
-	@Column(name="pan_card")
-	private byte[] panCard;
+	@Column(name="pan_card",columnDefinition="MEDIUMTEXT")
+	private String panCard;
 	
 	@Lob
-	@Column(name="adhar_card")
-	private byte[] adharCard;
+	@Column(name="adhar_card",columnDefinition="MEDIUMTEXT")
+	private String adharCard;
 	
 	@Column(name="date_of_birth")
 	private Date dateOfBirth;
@@ -71,19 +72,19 @@ public class User
 	private Integer status;
 	
 	@Lob
-	@Column(name="profile")
-	private byte[] profile;
+	@Column(name="profile",columnDefinition="MEDIUMTEXT")
+	private String profile;
 	
 	@JoinColumn(name="agency_id")
 	@ManyToOne
 	private Agency agencyId;
 
 	@JoinColumn(name="local_address_id")
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private LocalAddress localAddress;
 	
 	@JoinColumn(name="permanant_address_id")
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private PermanantAddress permanantAddress;
 	
 	@OneToMany(mappedBy="userId")

@@ -42,7 +42,7 @@ public class Agency
 	private String zip;
 	
 	@OneToMany(mappedBy="agencyId")
-	private List<User> userlist;
+	private List<Users> userlist;
 	
 	
 }

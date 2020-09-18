@@ -37,5 +37,5 @@ public class BookingDetails
 	
 	@JoinColumn(name="user_id")
 	@ManyToOne
-	private User userId;
+	private Users userId;
 }
