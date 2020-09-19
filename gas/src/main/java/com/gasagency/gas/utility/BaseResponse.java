@@ -12,6 +12,7 @@ public class BaseResponse<T> implements Serializable{
 	private T responseObject;
 	private String totalRecords;
 	private List<T> responseListObject;
+	private String jwt;
 
 	public BaseResponse() {
 		super();
@@ -67,6 +68,14 @@ public class BaseResponse<T> implements Serializable{
 
 	public void setReasonText(String reasonText) {
 		this.reasonText = reasonText;
+	}
+
+	public String getJwt() {
+		return jwt;
+	}
+
+	public void setJwt(String jwt) {
+		this.jwt = jwt;
 	}
 	
 	
