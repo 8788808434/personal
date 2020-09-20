@@ -22,14 +22,13 @@ import com.gasagency.gas.entity.PermanantAddress;
 import lombok.Getter;
 import lombok.Setter;
 
+@Setter
+@Getter
+@Table(name="txn_user")
 public class UsersModel {
 
 	
-	@Setter
-	@Getter
-	@Table(name="txn_user")
-	public class Users 
-	{
+	
 	
 		@Column(name="user_id")
 		private Integer userId;
@@ -95,5 +94,5 @@ public class UsersModel {
 		private List<BookingDetails> bookingList;
 
   }
-}
+
 	

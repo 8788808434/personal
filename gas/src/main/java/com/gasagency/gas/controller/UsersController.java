@@ -1,14 +1,18 @@
 package com.gasagency.gas.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gasagency.gas.entity.Users;
+import com.gasagency.gas.model.UsersModel;
 import com.gasagency.gas.service.UsersServiceInterf;
 import com.gasagency.gas.utility.BaseResponse;
 import com.gasagency.gas.utility.CommonConstants;
@@ -55,4 +59,32 @@ public class UsersController {
 			return new ResponseEntity<BaseResponse<Users>>(usersBaseResponse,null,HttpStatus.NO_CONTENT);
 		}
 	}
-}
+	
+	
+	
+	
+	@GetMapping("/getUser")
+	public ResponseEntity<BaseResponse<UsersModel>> getUser(HttpServletRequest request)
+	{
+		BaseResponse<UsersModel> baseResponse=new BaseResponse<>();
+		
+			BaseResponse<UsersModel> usersData=usersServiceInterf.getUsers();
+			if(usersData.getStatus().equalsIgnoreCase("SUCCESS"))
+			{
+				baseResponse.setStatus(usersData.getStatus());
+				baseResponse.setReasonCode(usersData.getReasonText());
+				baseResponse.setResponseListObject(usersData.getResponseListObject());
+				return new ResponseEntity<BaseResponse<UsersModel>>(baseResponse,null,HttpStatus.FOUND);
+			}
+			else
+			{
+				baseResponse.setStatus(usersData.getStatus());
+				baseResponse.setReasonCode(usersData.getReasonText());
+				baseResponse.setResponseListObject(usersData.getResponseListObject());
+				return new ResponseEntity<BaseResponse<UsersModel>>(baseResponse,null,HttpStatus.NOT_FOUND);
+			}
+			
+		}
+		
+	}
+

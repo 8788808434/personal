@@ -15,4 +15,7 @@ public class CommonConstants {
 	public static final String DUPLICATION_USERNAME_MOBILENO_EMAIL = "already exist username or mobile or email";
 	
 	public static final String INPUT_PASSWORD_NULL= "password input null !!";
+	
+	public static final String USERS_GET_SUCCESS= "all users get successfully !!";
+	public static final String USERS_GET_FAILURE= " users not get successfully !!";
 }
